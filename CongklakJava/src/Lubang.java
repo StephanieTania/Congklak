@@ -12,9 +12,25 @@ public class Lubang {
     private int isi;
     private boolean bisaDiisi;
 
-    public Lubang(int isi) {
-        this.isi = isi;
+    public Lubang() {
+        this.isi = 0;
         bisaDiisi=true;
+    }
+
+    public int getIsi() {
+        return isi;
+    }
+
+    public void setIsi(int isi) {
+        this.isi = isi;
+    }
+
+    public boolean isBisaDiisi() {
+        return bisaDiisi;
+    }
+
+    public void setBisaDiisi(boolean bisaDiisi) {
+        this.bisaDiisi = bisaDiisi;
     }
     
 }
