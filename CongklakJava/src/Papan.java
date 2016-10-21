@@ -41,6 +41,10 @@ public class Papan {
     }
     
     public void siapkanPapan(){
+        for(int i=0;i<14;i++){
+            lubang[i].setIsi(0);
+            lubang[i].setBisaDiisi(true);
+        }
         int i=0;
         while(i<7&&rumah0>=7){
             lubang[i].setIsi(7);
