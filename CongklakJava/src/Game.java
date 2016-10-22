@@ -16,6 +16,7 @@ public class Game {
     public Game() {
         giliran = 0; //giliran 0 adalah Player 1, giliran 1 adalah Player 2
         p = new Papan();
+        p.siapkanPapan();
     }
 
     public void gerak(int idxLubang) {
@@ -26,17 +27,29 @@ public class Game {
         do {
             idx = (idx + 1) % 14; //maju ke lubang selanjutnya
             if (p.getLubang()[idx].isBisaDiisi()) {
-                if (giliran == 0 && idx == p.getIsiAwal1() && tangan == 1) {
-                    //Player 1 berakhir di rumah
-                    masukRumah = true;
-                    p.setRumah0(p.getRumah0() + 1);
-                    break;
-                }
-                if (giliran == 1 && idx == p.getIsiAwal0() && tangan == 1) {
-                    //Player 2 berakhir di rumah
-                    masukRumah = true;
-                    p.setRumah1(p.getRumah1() + 1);
-                    break;
+                if (giliran == 0 && idx == 7) {
+                    //Player 1 masuk rumah
+                    if (tangan == 1) {
+                        //Player 1 berakhir di rumah
+                        masukRumah = true;
+                        p.setRumah0(p.getRumah0() + 1);
+                        break;
+                    } else {
+                        tangan -= 1;
+                        p.setRumah0(p.getRumah0() + 1);
+                    }
+                } else if (giliran == 1 && idx == 0) {
+                    //Player 2 masuk rumah
+                    if (tangan == 1) {
+                        //Player 2 berakhir di rumah
+                        masukRumah = true;
+                        p.setRumah1(p.getRumah1() + 1);
+                        break;
+                    }
+                    else{
+                        tangan-=1;
+                        p.setRumah1(p.getRumah1() + 1);
+                    }
                 }
                 tangan -= 1; //ambil biji dari tangan
                 p.getLubang()[idx].setIsi(p.getLubang()[idx].getIsi() + 1); //masukkan biji dari tangan ke lubang
@@ -47,15 +60,17 @@ public class Game {
                 //akhir di lubang yang awalnya kosong
                 if (giliran == 0) {
                     //giliran Player 1
-                    if (idx >= p.getIsiAwal1()) {
+                    if (idx >= 7) {
                         //lubang terakhir di daerah lawan
                         //ganti giliran
                     } else {
                         //lubang terakhir di daerah sendiri
                         //ambil biji di lubag terakhir dan seberangnya, simpan di rumah
-                        p.setRumah0(p.getRumah0()+p.getLubang()[idx].getIsi()+p.getLubang()[13-idx].getIsi());
+                        p.setRumah0(p.getRumah0() + p.getLubang()[idx].getIsi() + p.getLubang()[13 - idx].getIsi());
                     }
                 }
+            } else {
+                gerak(idx);
             }
             giliran = (giliran + 1) % 2;
         }
@@ -66,5 +81,13 @@ public class Game {
             return true;
         }
         return false;
+    }
+
+    public int getGiliran() {
+        return giliran;
+    }
+
+    public void printPapan() {
+        p.printPapan();
     }
 }
