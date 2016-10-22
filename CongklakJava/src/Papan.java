@@ -11,6 +11,7 @@
 public class Papan {
     private Lubang[] lubang;
     private int rumah0,rumah1;
+    private int isiAwal0,isiAwal1;
 
     public Papan() {
         rumah0=rumah1=49;
@@ -18,6 +19,14 @@ public class Papan {
         for(int i=0;i<lubang.length;i++){
             lubang[i]=new Lubang();
         }
+    }
+
+    public int getIsiAwal0() {
+        return isiAwal0;
+    }
+
+    public int getIsiAwal1() {
+        return isiAwal1;
     }
 
     public Lubang[] getLubang() {
@@ -51,6 +60,7 @@ public class Papan {
             i++;
             rumah0-=7;
         }
+        isiAwal0=0;
         while(i<7){
             lubang[i].setBisaDiisi(false);
             i++;
@@ -60,6 +70,9 @@ public class Papan {
             lubang[i].setIsi(7);
             i--;
             rumah1-=7;
+        }
+        if(i>=7){
+            isiAwal1=i+1;
         }
         while(i>=7){
             lubang[i].setBisaDiisi(false);
