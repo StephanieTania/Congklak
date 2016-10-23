@@ -20,6 +20,15 @@ public class Tester {
         Game g=new Game();
         Scanner sc=new Scanner(System.in);
         g.printPapan();
+        System.out.println("1. Setiap pemain akan bergiliran memasukkan angka indeks lubang yang akan diambil bijinya.");
+        System.out.println("2. Pemain tidak dapat mengambil dari lubang yang kosong atau dari lubang daerah lawan.");
+        System.out.println("3. Daerah Player 1 adalah bagian bawah dan daerah Player 2 adalah bagian atas.");
+        System.out.println("4. Indeks lubang adalah 0 sampai 13 dengan 0 sampai 6 adalah lubang daerah Player 1 dan 7 sampai 13 adalah lubang daerah Player 2.");
+        System.out.println("5. Demikian nomor-nomor lubang pada papan:");
+        System.out.println("         |07| |08| |09| |10| |11| |12| |13|");
+        System.out.println("|RumahP1|                                  |RumahP2|");
+        System.out.println("         |06| |05| |04| |03| |02| |01| |00|");
+        System.out.println("");
         while(!g.cekAkhirGame()){
             if(g.getGiliran()==0){
                 System.out.print("Giliran Player 1: (0,1,2,..,6) ");
@@ -49,6 +58,7 @@ public class Tester {
                 g.gerak(idx);
                 g.printPapan();
             }
+            System.out.println("---\n");
         }            
     }
     
