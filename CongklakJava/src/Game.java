@@ -90,4 +90,31 @@ public class Game {
     public void printPapan() {
         p.printPapan();
     }
+    
+    public boolean cekInput(int idx){
+        if(idx<0||idx>=14){
+            //indeks tidak valid
+            return false;
+        }
+        else{
+            if(!p.getLubang()[idx].isBisaDiisi()){
+                //tidak bisa ambil dari lubang 'terbakar'
+                return false;
+            }
+            else if(p.getLubang()[idx].getIsi()==0){
+                //tidak bisa ambil dari lubang kosong
+                return false;
+            }
+            else{
+                //tidak bisa ambil dari lubang daerah lawan
+                if(giliran==0&&idx>=7){
+                    return false;
+                }
+                else if(giliran==1&&idx<7){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }
