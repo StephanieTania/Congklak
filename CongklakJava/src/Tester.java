@@ -22,19 +22,29 @@ public class Tester {
         g.printPapan();
         while(!g.cekAkhirGame()){
             if(g.getGiliran()==0){
-                System.out.print("Giliran Player 1: (0,1,2,..,6)\n");
+                System.out.print("Giliran Player 1: (0,1,2,..,6) ");
                 int idx=sc.nextInt();
                 
                 //cek input, harus valid
+                while(!g.cekInput(idx)){
+                    System.out.println("Input indeks lubang salah, silakan dicoba lagi.");
+                    System.out.print("Giliran Player 1: (0,1,2,..,6) ");
+                    idx=sc.nextInt();
+                }
                 
                 g.gerak(idx);
                 g.printPapan();
             }
             else{
-                System.out.println("Giliran Player 2: (7,8,9,..,13)\n");
+                System.out.print("Giliran Player 2: (7,8,9,..,13) ");
                 int idx=sc.nextInt();
                 
                 //cek input, harus valid
+                while(!g.cekInput(idx)){
+                    System.out.println("Input indeks lubang salah, silakan dicoba lagi.");
+                    System.out.print("Giliran Player 2: (7,8,9,..,13) ");
+                    idx=sc.nextInt();
+                }
                 
                 g.gerak(idx);
                 g.printPapan();
