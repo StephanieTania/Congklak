@@ -63,16 +63,44 @@ public class Game {
                     if (idx >= 7) {
                         //lubang terakhir di daerah lawan
                         //ganti giliran
+                        giliran = (giliran + 1) % 2;
                     } else {
                         //lubang terakhir di daerah sendiri
-                        //ambil biji di lubag terakhir dan seberangnya, simpan di rumah
-                        p.setRumah0(p.getRumah0() + p.getLubang()[idx].getIsi() + p.getLubang()[13 - idx].getIsi());
+                        //ambil biji di lubang terakhir dan seberangnya, simpan di rumah
+                        int biji=1;
+                        p.getLubang()[idx].setIsi(0);
+                        
+                        biji+=p.getLubang()[13-idx].getIsi();
+                        p.getLubang()[13-idx].setIsi(0);
+                        
+                        p.setRumah0(p.getRumah0()+biji);
+                        giliran = (giliran + 1) % 2;                        
+                    }
+                }
+                else if(giliran==1){
+                    //giliran Player 2
+                    if(idx<7){
+                        //lubang terakhir di daerah lawan
+                        //ganti giliran
+                        giliran=(giliran+1)%2;
+                    }
+                    else{
+                        //lubang terakhir di daerah sendiri
+                        //lubang terakhir di daerah sendiri
+                        //ambil biji di lubang terakhir dan seberangnya, simpan di rumah
+                        int biji=1;
+                        p.getLubang()[idx].setIsi(0);
+                        
+                        biji+=p.getLubang()[13-idx].getIsi();
+                        p.getLubang()[13-idx].setIsi(0);
+                        
+                        p.setRumah1(p.getRumah1()+biji);
+                        giliran = (giliran + 1) % 2;
                     }
                 }
             } else {
                 gerak(idx);
             }
-            giliran = (giliran + 1) % 2;
         }
     }
 
