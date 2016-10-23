@@ -5,7 +5,7 @@
  */
 
 /**
- *
+ * Kelas yang merepresentasikan algoritma Minimax.
  * @author user
  */
 public class Minimax {
@@ -15,12 +15,17 @@ public class Minimax {
     private int cobaRumah0, cobaRumah1;
     private int giliran;
 
+    /**
+     * Constructor kelas Minimax.
+     * Atribut-atribut penampung nilai sementara disiapkan.
+     */
     public Minimax() {
         isiLubang = new int[14];
         bisaDiisi = new boolean[14];
         giliran=1;
     }
 
+    //mengganti kondisi atribut-atribut penampung agar sama dengan keadaan yang akan diperiksa.
     private void setState(Papan p) {
         Lubang[] lubang=p.getLubang();
         for (int i = 0; i < lubang.length; i++) {
@@ -33,6 +38,7 @@ public class Minimax {
         cobaRumah1 = p.getRumah1();
     }
 
+    //simulasi permainan dalam 1 kali jalan
     private void cobaGerak(int idxLubang) {
         int tangan = isiLubang[idxLubang];
         isiLubang[idxLubang]=0;
@@ -115,6 +121,9 @@ public class Minimax {
         }
     }
     
+    /**
+     * Method untuk mencari indeks lubang yang menghasilkan solusi terbaik.
+     */
     public void cariSolusiTerbaik(){
         
     }

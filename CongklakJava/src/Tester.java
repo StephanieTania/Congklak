@@ -8,7 +8,7 @@ import java.util.Scanner;
  */
 
 /**
- *
+ * Kelas utama untuk menjalankan game.
  * @author user
  */
 public class Tester {
