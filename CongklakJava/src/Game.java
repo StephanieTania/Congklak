@@ -169,5 +169,21 @@ public class Game {
             }
         }
         return true;
+    }    
+    
+    /**
+     * Method untuk mengembalikan pemain yang menang.
+     * @return Angka 0 jika pemenang adalah Player 1, angka 1 jika pemenang adalah Player 2, atau angka -1 jika permainan berakhir seri.
+     */
+    public int getPemenang(){
+        if(p.getRumah0()>p.getRumah1()){
+            return 0;
+        }
+        else if(p.getRumah0()<p.getRumah1()){
+            return 1;
+        }
+        else{
+            return -1;
+        }
     }
 }
