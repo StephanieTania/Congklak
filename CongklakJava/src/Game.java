@@ -111,6 +111,10 @@ public class Game {
                 gerak(idx);
             }
         }
+        if(!masihAdaJalanValid(giliran)){
+            //tidak ada lagi jalan valid, harus ganti giliran
+            giliran=(giliran+1)%2;
+        }
     }
 
     /**
@@ -185,5 +189,25 @@ public class Game {
         else{
             return -1;
         }
+    }    
+    
+    private boolean masihAdaJalanValid(int giliran){
+        if(giliran==0){
+            //giliran Player 1
+            for(int i=0;i<7;i++){
+                if(p.getLubang()[i].getIsi()!=0){
+                    return true;
+                }
+            }
+        }
+        else if(giliran==1){
+            //giliran Player 2
+            for(int i=7;i<14;i++){
+                if(p.getLubang()[i].getIsi()!=0){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }
