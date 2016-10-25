@@ -19,7 +19,6 @@ public class Tester {
     public static void main(String[] args) {
         Game g = new Game();
         Scanner sc = new Scanner(System.in);
-        g.printPapan();
         System.out.println("1. Setiap pemain akan bergiliran memasukkan angka indeks lubang yang akan diambil bijinya.");
         System.out.println("2. Pemain tidak dapat mengambil dari lubang yang kosong atau dari lubang daerah lawan.");
         System.out.println("3. Daerah Player 1 adalah bagian bawah dan daerah Player 2 adalah bagian atas.");
@@ -38,14 +37,24 @@ public class Tester {
                 System.out.print("Masukan mode permainan: (0 untuk lawan pemain lain dan 1 untuk lawan komputer) ");
                 mode = sc.nextInt();
             }
+            g.printPapan();        
             if (mode == 0) {
                 lawanManusia(sc, g);
             } else {
                 lawanKomputer(sc, g);
             }
+            int pemenang=g.getPemenang();
+            switch(pemenang){
+                case 0:
+                    System.out.println("Player 1 adalah pemenangnya!");
+                case 1:
+                    System.out.println("Player 2 adalah pemenangnya!");
+                default:
+                    System.out.println("Permainan seri! Player 1 dan Player 2 mempunyai skor akhir sama!");
+            }
             System.out.print("Apakah Anda ingin melanjutkan permainan? (Y/N) ");
             char input = sc.next().charAt(0);
-            if (input == 'Y') {
+            if (input == 'Y'||input=='y') {
                 lanjut = true;
             } else {
                 lanjut = false;
@@ -98,7 +107,7 @@ public class Tester {
                     System.out.print("Giliran Player 1: (0,1,2,..,6) ");
                     idx = sc.nextInt();
                 }
-
+                
                 g.gerak(idx);
                 g.printPapan();
             } else {
