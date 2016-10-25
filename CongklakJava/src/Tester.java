@@ -8,8 +8,8 @@ import java.util.Scanner;
  */
 /**
  * Kelas utama untuk menjalankan game.
- *
- * @author user
+ * 
+* @author user
  */
 public class Tester {
 
@@ -31,45 +31,84 @@ public class Tester {
         System.out.println("");
         boolean lanjut = true;
         while (lanjut) {
-            while (!g.cekAkhirGame()) {
-                if (g.getGiliran() == 0) {
-                    System.out.print("Giliran Player 1: (0,1,2,..,6) ");
-                    int idx = sc.nextInt();
-
-                    //cek input, harus valid
-                    while (!g.cekInput(idx)) {
-                        System.out.println("Input indeks lubang salah, silakan dicoba lagi.");
-                        System.out.print("Giliran Player 1: (0,1,2,..,6) ");
-                        idx = sc.nextInt();
-                    }
-
-                    g.gerak(idx);
-                    g.printPapan();
-                } else {
-                    System.out.print("Giliran Player 2: (7,8,9,..,13) ");
-                    int idx = sc.nextInt();
-
-                    //cek input, harus valid
-                    while (!g.cekInput(idx)) {
-                        System.out.println("Input indeks lubang salah, silakan dicoba lagi.");
-                        System.out.print("Giliran Player 2: (7,8,9,..,13) ");
-                        idx = sc.nextInt();
-                    }
-
-                    g.gerak(idx);
-                    g.printPapan();
-                }
-                System.out.println("---\n");
+            System.out.print("Masukan mode permainan: (0 untuk lawan pemain lain dan 1 untuk lawan komputer) ");
+            int mode = sc.nextInt();
+            while (mode < 0 || mode > 1) {
+                System.out.println("Mode permainan tidak valid. Silakan dicoba lagi.");
+                System.out.print("Masukan mode permainan: (0 untuk lawan pemain lain dan 1 untuk lawan komputer) ");
+                mode = sc.nextInt();
+            }
+            if (mode == 0) {
+                lawanManusia(sc, g);
+            } else {
+                lawanKomputer(sc, g);
             }
             System.out.print("Apakah Anda ingin melanjutkan permainan? (Y/N) ");
-            char input=sc.next().charAt(0);
-            if(input=='Y'){
-                lanjut=true;
-            }
-            else{
-                lanjut=false;
+            char input = sc.next().charAt(0);
+            if (input == 'Y') {
+                lanjut = true;
+            } else {
+                lanjut = false;
             }
         }
     }
 
+    private static void lawanManusia(Scanner sc, Game g) {
+        while (!g.cekAkhirGame()) {
+            if (g.getGiliran() == 0) {
+                System.out.print("Giliran Player 1: (0,1,2,..,6) ");
+                int idx = sc.nextInt();
+
+                //cek input, harus valid
+                while (!g.cekInput(idx)) {
+                    System.out.println("Input indeks lubang salah, silakan dicoba lagi.");
+                    System.out.print("Giliran Player 1: (0,1,2,..,6) ");
+                    idx = sc.nextInt();
+                }
+
+                g.gerak(idx);
+                g.printPapan();
+            } else {
+                System.out.print("Giliran Player 2: (7,8,9,..,13) ");
+                int idx = sc.nextInt();
+
+                //cek input, harus valid
+                while (!g.cekInput(idx)) {
+                    System.out.println("Input indeks lubang salah, silakan dicoba lagi.");
+                    System.out.print("Giliran Player 2: (7,8,9,..,13) ");
+                    idx = sc.nextInt();
+                }
+
+                g.gerak(idx);
+                g.printPapan();
+            }
+            System.out.println("--- ");
+        }
+    }
+
+    private static void lawanKomputer(Scanner sc, Game g) {
+        while (!g.cekAkhirGame()) {
+            if (g.getGiliran() == 0) {
+                System.out.print("Giliran Player 1: (0,1,2,..,6) ");
+                int idx = sc.nextInt();
+
+                //cek input, harus valid
+                while (!g.cekInput(idx)) {
+                    System.out.println("Input indeks lubang salah, silakan dicoba lagi.");
+                    System.out.print("Giliran Player 1: (0,1,2,..,6) ");
+                    idx = sc.nextInt();
+                }
+
+                g.gerak(idx);
+                g.printPapan();
+            } else {
+                System.out.print("Giliran Player 2: (7,8,9,..,13) ");
+                int idx = g.cariJalanTerbaik();
+                System.out.println(idx);
+                g.gerak(idx);
+                g.printPapan();
+            }
+            System.out.println("--- ");
+        }
+    }
 }

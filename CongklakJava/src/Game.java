@@ -177,6 +177,42 @@ public class Game {
             }
         }
         return true;
+    }    
+    
+    /**
+     * Method untuk mengembalikan pemain yang menang.
+     * @return Angka 0 jika pemenang adalah Player 1, angka 1 jika pemenang adalah Player 2, atau angka -1 jika permainan berakhir seri.
+     */
+    public int getPemenang(){
+        if(p.getRumah0()>p.getRumah1()){
+            return 0;
+        }
+        else if(p.getRumah0()<p.getRumah1()){
+            return 1;
+        }
+        else{
+            return -1;
+        }
+    }    
+    
+    private boolean masihAdaJalanValid(int giliran){
+        if(giliran==0){
+            //giliran Player 1
+            for(int i=0;i<7;i++){
+                if(p.getLubang()[i].getIsi()!=0){
+                    return true;
+                }
+            }
+        }
+        else if(giliran==1){
+            //giliran Player 2
+            for(int i=7;i<14;i++){
+                if(p.getLubang()[i].getIsi()!=0){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
     
     /**
