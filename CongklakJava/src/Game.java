@@ -23,12 +23,10 @@ public class Game {
     /**
      * Constructor kelas Game.
      * Giliran pertama selalu diawali oleh Player 1.
-     * Papan permainan disiapkan di dalam constructor ini.
      */
     public Game() {
         giliran = 0; //giliran 0 adalah Player 1, giliran 1 adalah Player 2
         p = new Papan();
-        p.siapkanPapan();
     }
 
     /**
@@ -221,7 +219,14 @@ public class Game {
             }
         }
         return false;
-    }    
+    }
+    
+    /**
+     * Method untuk menyiapkan papan sebelum permainan dimulai.
+     */
+    public void siapkanPapan(){
+        p.siapkanPapan();
+    }
         
     /**
      * Method untuk memilih jalan terbaik dari semua kemungkinan lubang yang valid.

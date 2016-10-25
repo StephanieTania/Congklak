@@ -36,7 +36,8 @@ public class Tester {
                 System.out.print("Masukan mode permainan: (0 untuk lawan pemain lain dan 1 untuk lawan komputer) ");
                 mode = sc.nextInt();
             }
-            g.printPapan();        
+            g.siapkanPapan();
+            g.printPapan();
             if (mode == 0) {
                 lawanManusia(sc, g);
             } else {
