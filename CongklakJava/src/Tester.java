@@ -8,8 +8,7 @@ import java.util.Scanner;
  */
 /**
  * Kelas utama untuk menjalankan game.
- * 
-* @author user
+ * @author user
  */
 public class Tester {
 
@@ -62,6 +61,7 @@ public class Tester {
         }
     }
 
+    //method privat untuk permainan melawan orang lain
     private static void lawanManusia(Scanner sc, Game g) {
         while (!g.cekAkhirGame()) {
             if (g.getGiliran() == 0) {
@@ -95,6 +95,7 @@ public class Tester {
         }
     }
 
+    //method privat untuk permainan melawan komputer
     private static void lawanKomputer(Scanner sc, Game g) {
         while (!g.cekAkhirGame()) {
             if (g.getGiliran() == 0) {

@@ -9,7 +9,11 @@
  * @author user
  */
 public class Papan {
+    
+    //array yang berisi lubang-lubang dalam papan congklak
     private Lubang[] lubang;
+    
+    //menampung banyak biji pada masing-masing rumah
     private int rumah0,rumah1;
 
     /**
@@ -24,6 +28,12 @@ public class Papan {
         }
     }
     
+    /**
+     * Constructor berparameter kelas Papan.
+     * @param lubang Array lubang yang baru
+     * @param rumah0 Banyak biji di rumah Player 1 yang baru
+     * @param rumah1 Banyak biji di rumah Player 2 yang baru
+     */
     public Papan(Lubang[] lubang,int rumah0,int rumah1){
         this.lubang=new Lubang[14];
         setState(lubang,rumah0,rumah1);

@@ -9,7 +9,11 @@
  * @author user
  */
 public class Lubang {
+    
+    //banyak biji dalam lubang
     private int isi;
+    
+    //menentukan apakah lubang 'terbakar' atau tidak
     private boolean bisaDiisi;
 
     /**

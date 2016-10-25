@@ -14,7 +14,10 @@ import java.util.Stack;
  */
 public class Game {
 
+    //atribut untuk menyimpan nomor giliran
     private int giliran;
+    
+    //atribut yang menyimpan papan permainan saat ini
     private Papan p;
 
     /**
@@ -48,6 +51,7 @@ public class Game {
                         p.setRumah0(p.getRumah0() + 1);
                         break;
                     } else {
+                        //Player 1 lewat rumah
                         tangan -= 1;
                         p.setRumah0(p.getRumah0() + 1);
                     }
@@ -60,6 +64,7 @@ public class Game {
                         break;
                     }
                     else{
+                        //Player 2 lewat rumah
                         tangan-=1;
                         p.setRumah1(p.getRumah1() + 1);
                     }
@@ -126,6 +131,7 @@ public class Game {
      * @return True jika permainan sudah berakhir dan ada pemenang, false jika belum.
      */
     public boolean cekAkhirGame() {
+        //permainan pasti berakhir ketika semua biji berada di dalam rumah
         if (p.getRumah0() + p.getRumah1() == 98) {
             return true;
         }
@@ -195,6 +201,8 @@ public class Game {
         }
     }    
     
+    //memeriksa apakah ada jalan yang valid untuk pemain yang akan memulai gilirannya
+    //jika tidak ada yang valid, maka giliran akan dikembalikan ke pemain yang lain
     private boolean masihAdaJalanValid(int giliran){
         if(giliran==0){
             //giliran Player 1
@@ -215,6 +223,10 @@ public class Game {
         return false;
     }    
         
+    /**
+     * Method untuk memilih jalan terbaik dari semua kemungkinan lubang yang valid.
+     * @return Indeks lubang yang mungkin terbaik untuk dipilih.
+     */
     public int cariJalanTerbaik(){
         Papan statePapan=p;
         Stack<Papan> states=new Stack<Papan>();
@@ -271,6 +283,13 @@ public class Game {
         return bestMove;
     }
     
+    /**
+     * Method untuk memaksimalkan nilai yang didapat untuk Player 2 dalam kasus ini, yaitu komputer.
+     * @param alpha Batas bawah
+     * @param beta Batas atas
+     * @param d Kedalaman dalam pohon
+     * @return Nilai maksimum yang bida didapat dari sisi Player 2.
+     */
     public int cariMax(int alpha, int beta,int d){
         Stack<Papan> states=new Stack<Papan>();
         if(cekAkhirGame()||d>0){
@@ -320,6 +339,13 @@ public class Game {
         return alpha;
     }
     
+    /**
+     * Method untuk meminimumkan nilai yang didapat untuk Player 2 dalam kasus ini, yaitu komputer.
+     * @param alpha Batas bawah
+     * @param beta Batas atas
+     * @param d Kedalaman dalam pohon
+     * @return Nilai minimum yang bisa didapat dari sisi Player 2.
+     */
     public int cariMin(int alpha, int beta,int d){
         Stack<Papan> states=new Stack<Papan>();
         if(cekAkhirGame()||d>0){
