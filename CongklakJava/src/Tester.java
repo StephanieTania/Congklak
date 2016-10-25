@@ -6,9 +6,9 @@ import java.util.Scanner;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  * Kelas utama untuk menjalankan game.
+ *
  * @author user
  */
 public class Tester {
@@ -17,8 +17,8 @@ public class Tester {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Game g=new Game();
-        Scanner sc=new Scanner(System.in);
+        Game g = new Game();
+        Scanner sc = new Scanner(System.in);
         g.printPapan();
         System.out.println("1. Setiap pemain akan bergiliran memasukkan angka indeks lubang yang akan diambil bijinya.");
         System.out.println("2. Pemain tidak dapat mengambil dari lubang yang kosong atau dari lubang daerah lawan.");
@@ -29,37 +29,47 @@ public class Tester {
         System.out.println("|RumahP1|                                  |RumahP2|");
         System.out.println("         |06| |05| |04| |03| |02| |01| |00|");
         System.out.println("");
-        while(!g.cekAkhirGame()){
-            if(g.getGiliran()==0){
-                System.out.print("Giliran Player 1: (0,1,2,..,6) ");
-                int idx=sc.nextInt();
-                
-                //cek input, harus valid
-                while(!g.cekInput(idx)){
-                    System.out.println("Input indeks lubang salah, silakan dicoba lagi.");
+        boolean lanjut = true;
+        while (lanjut) {
+            while (!g.cekAkhirGame()) {
+                if (g.getGiliran() == 0) {
                     System.out.print("Giliran Player 1: (0,1,2,..,6) ");
-                    idx=sc.nextInt();
+                    int idx = sc.nextInt();
+
+                    //cek input, harus valid
+                    while (!g.cekInput(idx)) {
+                        System.out.println("Input indeks lubang salah, silakan dicoba lagi.");
+                        System.out.print("Giliran Player 1: (0,1,2,..,6) ");
+                        idx = sc.nextInt();
+                    }
+
+                    g.gerak(idx);
+                    g.printPapan();
+                } else {
+                    System.out.print("Giliran Player 2: (7,8,9,..,13) ");
+                    int idx = sc.nextInt();
+
+                    //cek input, harus valid
+                    while (!g.cekInput(idx)) {
+                        System.out.println("Input indeks lubang salah, silakan dicoba lagi.");
+                        System.out.print("Giliran Player 2: (7,8,9,..,13) ");
+                        idx = sc.nextInt();
+                    }
+
+                    g.gerak(idx);
+                    g.printPapan();
                 }
-                
-                g.gerak(idx);
-                g.printPapan();
+                System.out.println("---\n");
+            }
+            System.out.print("Apakah Anda ingin melanjutkan permainan? (Y/N) ");
+            char input=sc.next().charAt(0);
+            if(input=='Y'){
+                lanjut=true;
             }
             else{
-                System.out.print("Giliran Player 2: (7,8,9,..,13) ");
-                int idx=sc.nextInt();
-                
-                //cek input, harus valid
-                while(!g.cekInput(idx)){
-                    System.out.println("Input indeks lubang salah, silakan dicoba lagi.");
-                    System.out.print("Giliran Player 2: (7,8,9,..,13) ");
-                    idx=sc.nextInt();
-                }
-                
-                g.gerak(idx);
-                g.printPapan();
+                lanjut=false;
             }
-            System.out.println("---\n");
-        }            
+        }
     }
-    
+
 }

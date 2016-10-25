@@ -24,6 +24,10 @@ public class Papan {
         }
     }
     
+    public Papan(Lubang[] lubang,int rumah0,int rumah1){
+        setState(lubang,rumah0,rumah1);
+    }
+    
     /**
      * Getter untuk atribut privat lubang.
      * @return Array berisi objek-objek lubang.
@@ -103,6 +107,14 @@ public class Papan {
             lubang[i].setBisaDiisi(false);
             i++;
         }
+    }
+    
+    private void setState(Lubang[] lubang,int rumah0,int rumah1){
+        for(int i=0;i<lubang.length;i++){
+            this.lubang[i]=lubang[i];
+        }
+        this.rumah0=rumah0;
+        this.rumah1=rumah1;
     }
     
     /**
