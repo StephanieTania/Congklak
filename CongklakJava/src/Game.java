@@ -213,43 +213,7 @@ public class Game {
             }
         }
         return false;
-    }
-    
-    /**
-     * Method untuk mengembalikan pemain yang menang.
-     * @return Angka 0 jika pemenang adalah Player 1, angka 1 jika pemenang adalah Player 2, atau angka -1 jika permainan berakhir seri.
-     */
-    public int getPemenang(){
-        if(p.getRumah0()>p.getRumah1()){
-            return 0;
-        }
-        else if(p.getRumah0()<p.getRumah1()){
-            return 1;
-        }
-        else{
-            return -1;
-        }
-    }
-    
-    private boolean masihAdaJalanValid(int giliran){
-        if(giliran==0){
-            //giliran Player 1
-            for(int i=0;i<7;i++){
-                if(p.getLubang()[i].getIsi()!=0){
-                    return true;
-                }
-            }
-        }
-        else if(giliran==1){
-            //giliran Player 2
-            for(int i=7;i<14;i++){
-                if(p.getLubang()[i].getIsi()!=0){
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
+    }    
         
     public int cariJalanTerbaik(){
         Papan statePapan=p;
@@ -276,12 +240,14 @@ public class Game {
             
             //simulasi gerak
             this.gerak(lubangTerpilih);
-            Papan selanjutnya=p;
+            //nilai-nilai di papan p sudah berubah karena dipanggil di dalam method gerak()
             if(giliran==0){
-                //giliran Player 1 atau giliran lawan (minimum)                
+                //giliran Player 1 atau giliran lawan (minimum)
+                cariMin(alpha,beta,d+1);
             }
             else{
-                //giliran Player 2 atau pemain AI
+                //giliran Player 2 atau pemain AI (maksimum)
+                cariMax(alpha,beta,d+1);
             }
             if(pilihanTemp>alpha){
                 alpha=pilihanTemp;
@@ -305,20 +271,20 @@ public class Game {
         return bestMove;
     }
     
-    public int cariMax(Papan pSelanjutnya, int alpha, int beta,int d){
+    public int cariMax(int alpha, int beta,int d){
         Stack<Papan> states=new Stack<Papan>();
         if(cekAkhirGame()||d>0){
             if(giliran==1){
-                pSelanjutnya.getRumah1();
+                return p.getRumah1();
             }
             else{
-                pSelanjutnya.getRumah0();
+                return p.getRumah0();
             }
         }
         int pilihanTemp=7;
         for(int i=8;i<14&&cekInput(i);i++){
             int lubangTerpilih=i;
-            states.push(pSelanjutnya);
+            states.push(p);
             
             //simpan state papan awal
             Lubang[] lubangAwal=new Lubang[14];
@@ -332,12 +298,14 @@ public class Game {
             
             //simulasi gerak
             this.gerak(lubangTerpilih);
-            Papan selanjutnya=p;
+            //nilai-nilai di papan p sudah berubah karena dipanggil di dalam method gerak()
             if(giliran==0){
-                //giliran Player 1 atau giliran lawan (minimum)                
+                //giliran Player 1 atau giliran lawan (minimum)
+                cariMin(alpha,beta,d+1);
             }
             else{
-                //giliran Player 2 atau pemain AI
+                //giliran Player 2 atau pemain AI (maksimum)
+                cariMax(alpha,beta,d+1);
             }
             if(pilihanTemp>alpha){
                 alpha=pilihanTemp;
@@ -347,25 +315,25 @@ public class Game {
                 break;
             }
             //kembalikan papan ke state awal
-            pSelanjutnya=new Papan(lubangAwal,rumahAwal0,rumahAwal1);
+            p=new Papan(lubangAwal,rumahAwal0,rumahAwal1);
         }
         return alpha;
     }
     
-    public int cariMin(Papan pSelanjutnya, int alpha, int beta,int d){
+    public int cariMin(int alpha, int beta,int d){
         Stack<Papan> states=new Stack<Papan>();
         if(cekAkhirGame()||d>0){
             if(giliran==1){
-                pSelanjutnya.getRumah1();
+                p.getRumah1();
             }
             else{
-                pSelanjutnya.getRumah0();
+                p.getRumah0();
             }
         }
         int pilihanTemp=7;
         for(int i=8;i<14&&cekInput(i);i++){
             int lubangTerpilih=i;
-            states.push(pSelanjutnya);
+            states.push(p);
             
             //simpan state papan awal
             Lubang[] lubangAwal=new Lubang[14];
@@ -379,12 +347,14 @@ public class Game {
             
             //simulasi gerak
             this.gerak(lubangTerpilih);
-            Papan selanjutnya=p;
+            //nilai-nilai di papan p sudah berubah karena dipanggil di dalam method gerak()
             if(giliran==0){
-                //giliran Player 1 atau giliran lawan (minimum)                
+                //giliran Player 1 atau giliran lawan (minimum)
+                cariMin(alpha,beta,d+1);
             }
             else{
-                //giliran Player 2 atau pemain AI
+                //giliran Player 2 atau pemain AI (maksimum)
+                cariMax(alpha,beta,d+1);
             }
             if(pilihanTemp<beta){
                 beta=pilihanTemp;
@@ -394,7 +364,7 @@ public class Game {
                 break;
             }
             //kembalikan papan ke state awal
-            pSelanjutnya=new Papan(lubangAwal,rumahAwal0,rumahAwal1);
+            p=new Papan(lubangAwal,rumahAwal0,rumahAwal1);
         }
         return beta;
     }

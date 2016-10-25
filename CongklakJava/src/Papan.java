@@ -25,6 +25,7 @@ public class Papan {
     }
     
     public Papan(Lubang[] lubang,int rumah0,int rumah1){
+        this.lubang=new Lubang[14];
         setState(lubang,rumah0,rumah1);
     }
     
