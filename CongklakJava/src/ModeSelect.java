@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
  */
 
 /**
- *
+ * Kelas untuk menampilkan window pilihan mode.
  * @author user
  */
 public class ModeSelect extends javax.swing.JFrame {
@@ -91,10 +91,18 @@ public class ModeSelect extends javax.swing.JFrame {
 
     private void btnMulaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMulaiActionPerformed
         if(!this.r0.isSelected()&&!this.r1.isSelected()){
+            //menampilkan error message ketika tombol mulai diklik sebelum memilih mode
             JOptionPane.showMessageDialog(this, "Pilih salah satu mode!", "Error", JOptionPane.ERROR_MESSAGE);
         }
         else{
+            //inisialisasi window permainan dengan mode yang dipilih user
             Gameboard gb=new Gameboard();
+            if(this.r0.isSelected()){
+                gb.setMode(0);
+            }
+            else{
+                gb.setMode(1);
+            }
             gb.setVisible(true);
             this.setVisible(false);
         }

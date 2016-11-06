@@ -1,3 +1,6 @@
+
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -5,16 +8,22 @@
  */
 
 /**
- *
+ * Kelas GUI untuk papan permainan congklak
  * @author user
  */
 public class Gameboard extends javax.swing.JFrame {
-    private int mode;
+    private int mode; //mode permainan, 0 untuk manusia vs manusia dan 1 untuk manusia vs komputer
+    private javax.swing.JButton[] arrButton; //array untuk menyimpan lubang yang direpresentasikan oleh button
+    private Game g; //kelas game
     /**
      * Creates new form Gameboard
      */
     public Gameboard() {
         initComponents();
+        arrButton=new javax.swing.JButton[]{l0,l1,l2,l3,l4,l5,l6,l7,l8,l9,l10,l11,l12,l13};
+        g=new Game();
+        g.siapkanPapan();
+        update();
     }
 
     /**
@@ -26,21 +35,249 @@ public class Gameboard extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        l7 = new javax.swing.JButton();
+        l8 = new javax.swing.JButton();
+        l9 = new javax.swing.JButton();
+        l10 = new javax.swing.JButton();
+        l11 = new javax.swing.JButton();
+        l12 = new javax.swing.JButton();
+        l13 = new javax.swing.JButton();
+        l3 = new javax.swing.JButton();
+        l2 = new javax.swing.JButton();
+        l1 = new javax.swing.JButton();
+        l0 = new javax.swing.JButton();
+        l6 = new javax.swing.JButton();
+        l5 = new javax.swing.JButton();
+        l4 = new javax.swing.JButton();
+        rmh0 = new javax.swing.JTextField();
+        rmh1 = new javax.swing.JTextField();
+        lblGiliran = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        l7.setText("0");
+        l7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                l7ActionPerformed(evt);
+            }
+        });
+
+        l8.setText("0");
+        l8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                l7ActionPerformed(evt);
+            }
+        });
+
+        l9.setText("0");
+        l9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                l7ActionPerformed(evt);
+            }
+        });
+
+        l10.setText("0");
+        l10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                l7ActionPerformed(evt);
+            }
+        });
+
+        l11.setText("0");
+        l11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                l7ActionPerformed(evt);
+            }
+        });
+
+        l12.setText("0");
+        l12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                l7ActionPerformed(evt);
+            }
+        });
+
+        l13.setText("0");
+        l13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                l7ActionPerformed(evt);
+            }
+        });
+
+        l3.setText("0");
+        l3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                l7ActionPerformed(evt);
+            }
+        });
+
+        l2.setText("0");
+        l2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                l7ActionPerformed(evt);
+            }
+        });
+
+        l1.setText("0");
+        l1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                l7ActionPerformed(evt);
+            }
+        });
+
+        l0.setText("0");
+        l0.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                l7ActionPerformed(evt);
+            }
+        });
+
+        l6.setText("0");
+        l6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                l7ActionPerformed(evt);
+            }
+        });
+
+        l5.setText("0");
+        l5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                l7ActionPerformed(evt);
+            }
+        });
+
+        l4.setText("0");
+        l4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                l7ActionPerformed(evt);
+            }
+        });
+
+        rmh0.setEditable(false);
+        rmh0.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        rmh0.setText("0");
+
+        rmh1.setEditable(false);
+        rmh1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        rmh1.setText("0");
+
+        lblGiliran.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblGiliran.setText("Giliran: Player 1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(93, 93, 93)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(l6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(l5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(l4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(l3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(l2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(l1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(l0, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(l7, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(l8, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(l9, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(l10, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(l11, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(l12, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(l13, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 97, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(rmh0, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(rmh1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(lblGiliran)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(47, Short.MAX_VALUE)
+                .addComponent(lblGiliran)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(l7, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(l8, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(l9, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(l10, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(l11, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(l12, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(l13, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rmh0, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rmh1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(l6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(l5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(l4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(l3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(l2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(l1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(l0, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void l7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_l7ActionPerformed
+        for(int i=0;i<arrButton.length;i++){
+            //melihat button mana yang diklik
+            if(evt.getSource().equals(arrButton[i])){
+                //memeriksa input button yang diklik
+                if(!g.cekInput(i)){
+                    JOptionPane.showMessageDialog(this, "Lubang yang Anda pilih tidak valid!", "Lubang tidak valid", JOptionPane.ERROR_MESSAGE);
+                }
+                else{
+                    //pergerakan permainan tergantung pada mode permainan
+                    if(mode==0){
+                        g.gerak(i);
+                        update();
+                    }
+                    else{
+                        g.gerak(i);
+                        update();
+                        if(g.getGiliran()==1){
+                            while(g.getGiliran()==1&&!g.cekAkhirGame()){
+                                int idx=g.cariJalanTerbaik();
+                                g.gerak(idx);
+                                update();
+                            }
+                        }
+                    }
+                    if(g.cekAkhirGame()){
+                        //menampilkan pemenang setelah permainan berakhir
+                        JOptionPane.showMessageDialog(this, "Pemenangnya adalah Player "+(g.getPemenang()==0?1:2)+"!", "Permainan selesai", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                }
+                break;
+            }
+        }
+    }//GEN-LAST:event_l7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -77,10 +314,46 @@ public class Gameboard extends javax.swing.JFrame {
         });
     }
     
+    /**
+     * Method untuk menetapkan mode permainan
+     * @param mode Mode permainan
+     */
     public void setMode(int mode){
         this.mode=mode;
     }
+    
+    //method privat untuk mengubah tulisan pada button sesuai dengan banyak biji pada lubang yang direpresentasikannya
+    private void update(){
+        int[] lubang=g.getIsiLubang();
+        int r0=g.getRumah0();
+        int r1=g.getRumah1();
+        rmh0.setText(r0+"");
+        rmh1.setText(r1+"");
+        for(int i=0;i<arrButton.length;i++){
+            arrButton[i].setText(lubang[i]+"");
+        }
+        lblGiliran.setText(g.getGiliran()==0?"Giliran: Player 1":"Giliran: Player 2");
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton l0;
+    private javax.swing.JButton l1;
+    private javax.swing.JButton l10;
+    private javax.swing.JButton l11;
+    private javax.swing.JButton l12;
+    private javax.swing.JButton l13;
+    private javax.swing.JButton l2;
+    private javax.swing.JButton l3;
+    private javax.swing.JButton l4;
+    private javax.swing.JButton l5;
+    private javax.swing.JButton l6;
+    private javax.swing.JButton l7;
+    private javax.swing.JButton l8;
+    private javax.swing.JButton l9;
+    private javax.swing.JLabel lblGiliran;
+    private javax.swing.JTextField rmh0;
+    private javax.swing.JTextField rmh1;
     // End of variables declaration//GEN-END:variables
 }
+
