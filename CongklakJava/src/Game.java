@@ -399,4 +399,33 @@ public class Game {
         }
         return beta;
     }
+    
+    /**
+     * Method untuk mengembalikan isi lubang-lubang kecil saat ini.
+     * @return Array integer yang menyimpan banyak biji pada setiap lubang kecil.
+     */
+    public int[] getIsiLubang(){
+        int[] isi=new int[14];
+        Lubang[] l=p.getLubang();
+        for(int i=0;i<isi.length;i++){
+            isi[i]=l[i].getIsi();
+        }
+        return isi;
+    }
+    
+    /**
+     * Method untuk mendapatkan banyak biji pada rumah Player 1.
+     * @return Banyak biji di rumah Player 1.
+     */
+    public int getRumah0(){
+        return p.getRumah0();
+    }
+    
+    /**
+     * Method untuk mendapatkan banyak biji pada rumah Player 2.
+     * @return Banyak biji di rumah Player 2.
+     */
+    public int getRumah1(){
+        return p.getRumah1();
+    }
 }
